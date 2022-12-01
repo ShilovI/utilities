@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'com.shilovi'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.7.6'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.6'
+
+    implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+
+    testImplementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.3'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+}
+
+test {
+    useJUnitPlatform()
+}
