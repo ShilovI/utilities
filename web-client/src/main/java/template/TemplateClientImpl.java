@@ -6,6 +6,7 @@ import exception.ResourceNotAvailableException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -26,22 +27,23 @@ public class TemplateClientImpl {
     private final HttpConnectionProperties properties;
 
     @Autowired
-    public TemplateClientImpl(WebClient storageSystemClient, HttpConnectionProperties properties) {
+    public TemplateClientImpl(WebClient storageSystemClient,
+                              HttpConnectionProperties properties) {
         this.storageSystemWebClient = storageSystemClient;
         this.properties = properties;
     }
 
-    public boolean sendToTransmitter(Objects request) {
+    public boolean send(Objects request) {
         logger.info("Transmitter send started {}", request);
         return Boolean.TRUE.equals(storageSystemWebClient.post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .acceptCharset(StandardCharsets.UTF_8)
                 .bodyValue(request)
                 .retrieve()
-                .onStatus(HttpStatus::is5xxServerError,
+                .onStatus(HttpStatusCode::is5xxServerError,
                         response -> Mono.error(new ResourceNotAvailableException(
-                                String.format("Resource server error, code : %s", response.rawStatusCode()))))
-                .onStatus(HttpStatus::is4xxClientError,
+                                String.format("Resource server error, code : %s", response.statusCode()))))
+                .onStatus(HttpStatusCode::is4xxClientError,
                         response -> response.bodyToMono(String.class).flatMap(errorBody -> Mono.error(
                                 new IncorrectResourceRequestException(
                                         String.format("Resource request error, response : %s", errorBody)))))

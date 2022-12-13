@@ -3,4 +3,5 @@ include 'web-client'
 include 'validator'
 include 'kafka'
 include 'mapper'
+include 'rest-template'
 

@@ -1,29 +1,30 @@
-package props;
+package config;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
-@Getter
-@Setter
+@Data
 @Validated
-public class HttpConnectionProperties {
-    private String baseUrl;
-
-    private boolean debug;
-
-    private int connectionTimeout = 2;
-
-    private int readTimeout = 2;
-
-    private int writeTimeout = 2;
-
-    private boolean enableMetrics = false;
+public class RestProperties {
+    @Min(1L)
+    @Max(200L)
+    private Integer maxThread = 100;
+    @Min(1L)
+    @Max(20L)
+    private Integer maxRoute = 10;
+    @Min(1000L)
+    @Max(90000L)
+    private Integer readTimeout = 15000;
+    @Min(1000L)
+    @Max(90000L)
+    private Integer connectionTimeout = 10000;
+    private boolean enabled;
 
     private SslConfig ssl = new SslConfig();
 
-    @Getter
-    @Setter
+    @Data
     @Validated
     public static class SslConfig {
         private boolean enabled = false;
@@ -38,13 +39,4 @@ public class HttpConnectionProperties {
         private int handshakeTimeout = 2;
     }
 
-    private RetryConfig retry = new RetryConfig();
-
-    @Getter
-    @Setter
-    @Validated
-    public static class RetryConfig {
-        long maxAttempts = 3;
-        long minBackoff = 300;
-    }
 }
