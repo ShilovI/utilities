@@ -1,0 +1,15 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    api 'org.projectlombok:lombok:1.18.22'
+    api 'org.slf4j:slf4j-api:1.7.25'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
+
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+}
+
+test {
+    useJUnitPlatform()
+}
