@@ -1,3 +1,4 @@
 rootProject.name = 'utilities'
 
 include 'web-client'
+include 'validator'
