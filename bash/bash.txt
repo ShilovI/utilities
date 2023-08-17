@@ -1,0 +1,84 @@
+sudo -superuserdo
+whoami - print username
+
+echo - print
+clear - clear terminal
+
+man + command name - command documentation
+
+pwd - print working directory
+ls - show directory (-lG - pretty)
+cd - moving between directories
+mkdir - create a directory
+rm -r - remove directory with inside
+cp - copy file
+mv - move or rename a file
+ln - create link to file
+alias + command - create alias
+
+export - make variable global
+
+cat - show file on console
+nl - show file on console with lines enumeration
+head, tale - show top 10 lines
+less - show file part
+
+1 - redirect standard output
+2 - redirect error output
+> - rewrite
+>> - add
+
+| - send left command output to write command input
+; - command set delimiter
+&& - command set delimiter next will be evoked only if previous one was successfully completed
+|| - command set delimiter next will be evoked only if previous one was failed
+
+cut - extract column from a file (-w whitespace delimiter -d delimiter -f column number)
+paste - append column
+tr - translate characters into other character
+sort - sort lines
+uniq - locale identical lines in file
+tee - copy a file and print it on standard output
+grep + regular expression + filename - find lines in file by a regular expression (-E extended mode)
+egrep + regular expression + filename - =grep -E
+
+nano - file redactor
+nano + filename - open file
+
+vim - file redactor
+vim + filename - open file
+i - to insert mode
+esc - exit insert mode
+: - command in command mode
+w - write
+q - quite
+help - help
+X - delete
+U - undo
+V - define region
+Y - copy region
+P - paste region
+
+touch + filename - create file or change meta
+WC + filename - word count
+
+which + program names - find program paths
+type + program names - aliases + paths
+whereis + program names - find program paths only in standard PATH
+
+locale - create index of files and search the index for string
+find - locate file in directory hierarchy (-name - regexp for name with option E, -type - type)
+
+xargs - xargs - proceed located files
+
+host + 'host' - check host in DNS
+ping + host - call host
+traceroute + host - print path to host
+ssh - connect to remote host through ssh
+scp - security copy
+sftp - connect to remote host through secure file transfer protocol
+
+/dev/null - black hole
+
+echo $? - print last command status
+test + expression - do expression ([[expression]] - same)
