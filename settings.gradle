@@ -1,2 +1,3 @@
 rootProject.name = 'utilities'
 
+include 'web-client'
